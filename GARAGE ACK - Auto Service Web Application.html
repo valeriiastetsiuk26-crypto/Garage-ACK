@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GARAGE ACK | Auto Service</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts: Inter & Orbitron for futuristic mechanical feel -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Orbitron:wght@600;800;900&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            blue: '#00b4d8',
+                            darkBlue: '#0077b6',
+                            accent: '#90e0ef',
+                            dark: '#0a0d12',
+                            card: '#121824',
+                            cardBorder: '#1e293b'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        tech: ['Orbitron', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #0a0d12;
+            color: #f1f5f9;
+        }
+        .glow-blue {
+            box-shadow: 0 0 25px rgba(0, 180, 216, 0.35);
+        }
+        .text-glow {
+            text-shadow: 0 0 12px rgba(0, 180, 216, 0.6);
+        }
+        .glass-panel {
+            background: rgba(18, 24, 36, 0.75);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .engine-bg {
+            background: radial-gradient(circle at center, rgba(0, 180, 216, 0.15) 0%, rgba(10, 13, 18, 0.95) 70%);
+        }
+    </style>
+</head>
+<body class="font-sans antialiased selection:bg-brand-blue selection:text-black">
+
+    <!-- HEADER / NAVBAR -->
+    <header class="fixed top-0 left-0 w-full z-50 glass-panel border-b border-slate-800/80 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            
+            <!-- Logo -->
+            <a href="#" class="flex items-center gap-3 group">
+                <div class="relative w-11 h-11 rounded-xl bg-gradient-to-br from-brand-blue to-blue-700 p-0.5 flex items-center justify-center glow-blue transition-transform group-hover:scale-105">
+                    <div class="w-full h-full bg-slate-950 rounded-[10px] flex items-center justify-center">
+                        <i class="fa-solid font-bold text-brand-blue text-xl fa-wrench"></i>
+                    </div>
+                </div>
+                <div>
+                    <span class="font-tech text-2xl font-black tracking-wider text-white flex items-center gap-1">
+                        GARAGE <span class="text-brand-blue">ACK</span>
+                    </span>
+                    <span class="text-[10px] font-semibold tracking-widest text-slate-400 uppercase block -mt-1">AUTO SERVICE</span>
+                </div>
+            </a>
+
+            <!-- Desktop Nav Links -->
+            <nav class="hidden md:flex items-center space-x-8 font-medium text-sm">
+                <a href="#hero" class="text-slate-300 hover:text-brand-blue transition-colors" data-i18n="nav_home">Home</a>
+                <a href="#info" class="text-slate-300 hover:text-brand-blue transition-colors" data-i18n="nav_details">Details</a>
+                <a href="#services" class="text-slate-300 hover:text-brand-blue transition-colors" data-i18n="nav_services">Services</a>
+                <a href="#contact" class="text-slate-300 hover:text-brand-blue transition-colors" data-i18n="nav_contact">Contact</a>
+            </nav>
+
+            <!-- Language Switcher & Quick Call -->
+            <div class="hidden lg:flex items-center space-x-5">
+                <!-- Language Selector -->
+                <div class="flex items-center bg-slate-900/90 rounded-lg p-1 border border-slate-800 text-xs font-semibold">
+                    <button onclick="setLanguage('en')" id="lang-en" class="px-2.5 py-1 rounded-md transition-all text-slate-400 hover:text-white">EN</button>
+                    <button onclick="setLanguage('fr')" id="lang-fr" class="px-2.5 py-1 rounded-md transition-all text-slate-400 hover:text-white">FR</button>
+                    <button onclick="setLanguage('nl')" id="lang-nl" class="px-2.5 py-1 rounded-md transition-all text-slate-400 hover:text-white">NL</button>
+                    <button onclick="setLanguage('ru')" id="lang-ru" class="px-2.5 py-1 rounded-md transition-all text-slate-400 hover:text-white">RU</button>
+                </div>
+
+                <a href="tel:0489116906" class="flex items-center gap-2 bg-gradient-to-r from-brand-blue to-brand-darkBlue hover:from-cyan-400 hover:to-blue-600 text-slate-950 font-bold text-sm px-4 py-2.5 rounded-xl transition-all shadow-lg hover:shadow-cyan-500/20 active:scale-95">
+                    <i class="fa-solid fa-phone"></i>
+                    <span>0489 11 69 06</span>
+                </a>
+            </div>
+
+            <!-- Mobile Menu Toggle Button -->
+            <div class="flex items-center gap-3 md:hidden">
+                <!-- Mobile Language Selector Switch -->
+                <div class="flex items-center bg-slate-900 rounded-lg p-0.5 border border-slate-800 text-xs">
+                    <button onclick="setLanguage('en')" class="px-1.5 py-0.5 rounded text-slate-300 hover:text-white font-medium">EN</button>
+                    <button onclick="setLanguage('fr')" class="px-1.5 py-0.5 rounded text-slate-300 hover:text-white font-medium">FR</button>
+                    <button onclick="setLanguage('nl')" class="px-1.5 py-0.5 rounded text-slate-300 hover:text-white font-medium">NL</button>
+                    <button onclick="setLanguage('ru')" class="px-1.5 py-0.5 rounded text-slate-300 hover:text-white font-medium">RU</button>
+                </div>
+
+                <button id="mobileMenuBtn" onclick="toggleMobileMenu()" class="text-slate-300 hover:text-white p-2">
+                    <i class="fa-solid fa-bars text-xl" id="menuIcon"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Drawer Navigation -->
+        <div id="mobileMenu" class="hidden md:hidden bg-slate-950/95 border-b border-slate-800 px-6 py-6 space-y-4">
+            <a href="#hero" onclick="toggleMobileMenu()" class="block text-slate-300 hover:text-brand-blue py-2 text-lg font-medium" data-i18n="nav_home">Home</a>
+            <a href="#info" onclick="toggleMobileMenu()" class="block text-slate-300 hover:text-brand-blue py-2 text-lg font-medium" data-i18n="nav_details">Details</a>
+            <a href="#services" onclick="toggleMobileMenu()" class="block text-slate-300 hover:text-brand-blue py-2 text-lg font-medium" data-i18n="nav_services">Services</a>
+            <a href="#contact" onclick="toggleMobileMenu()" class="block text-slate-300 hover:text-brand-blue py-2 text-lg font-medium" data-i18n="nav_contact">Contact</a>
+            
+            <a href="tel:0489116906" class="w-full flex items-center justify-center gap-2 bg-brand-blue text-slate-950 font-bold py-3 rounded-xl mt-4">
+                <i class="fa-solid fa-phone"></i>
+                <span>0489 11 69 06</span>
+            </a>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section id="hero" class="relative pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden engine-bg">
+        <!-- Glowing background elements -->
+        <div class="absolute top-1/4 left-1/2 -translate-x-1/2 w-[500px] h-[500px] bg-brand-blue/10 rounded-full blur-[120px] pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                
+                <!-- Hero Text -->
+                <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+                    <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-900 border border-brand-blue/30 text-brand-blue text-xs font-semibold tracking-wide">
+                        <span class="w-2 h-2 rounded-full bg-brand-blue animate-ping"></span>
+                        <span data-i18n="hero_badge">PROFESSIONAL AUTOMOTIVE REPAIR</span>
+                    </div>
+
+                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight text-white leading-tight font-tech">
+                        GARAGE <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-blue to-cyan-300 text-glow">ACK</span>
+                        <span class="block text-2xl sm:text-3xl lg:text-4xl font-bold text-slate-300 mt-2" data-i18n="hero_subtitle">AUTO SERVICE & DIAGNOSTICS</span>
+                    </h1>
+
+                    <p class="text-slate-400 text-base sm:text-lg max-w-2xl mx-auto lg:mx-0 leading-relaxed" data-i18n="hero_desc">
+                        Your trusted auto service center. From advanced diagnostic procedures to complete mechanical repairs and regular maintenance. We keep your vehicle performing at its best.
+                    </p>
+
+                    <!-- CTAs -->
+                    <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-4">
+                        <a href="#contact" class="w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-brand-blue to-brand-darkBlue hover:from-cyan-400 hover:to-blue-600 text-slate-950 font-bold rounded-xl transition-all duration-200 shadow-lg shadow-brand-blue/20 flex items-center justify-center gap-3 text-base">
+                            <i class="fa-solid fa-calendar-check text-lg"></i>
+                            <span data-i18n="btn_book">Book Appointment</span>
+                        </a>
+                        <a href="tel:0489116906" class="w-full sm:w-auto px-8 py-4 bg-slate-900 hover:bg-slate-800 text-slate-200 font-semibold border border-slate-700/80 rounded-xl transition-all flex items-center justify-center gap-3 text-base">
+                            <i class="fa-solid fa-phone text-brand-blue"></i>
+                            <span>0489 11 69 06</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Hero Graphic Engine Card -->
+                <div class="lg:col-span-5 flex justify-center">
+                    <div class="relative w-full max-w-md p-8 rounded-3xl glass-panel border border-brand-blue/30 glow-blue text-center group">
+                        
+                        <!-- Engine Visual Container -->
+                        <div class="relative mx-auto w-48 h-48 sm:w-56 sm:h-56 mb-6 flex items-center justify-center bg-slate-950/80 rounded-2xl border border-slate-800 p-4">
+                            <!-- SVG Replica of V8 Engine Emblem Icon -->
+                            <svg class="w-full h-full text-brand-blue filter drop-shadow-[0_0_15px_rgba(0,180,216,0.5)] transition-transform duration-500 group-hover:scale-105" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="100" cy="100" r="85" stroke="#00b4d8" stroke-width="4" stroke-dasharray="8 4" opacity="0.4" />
+                                <circle cx="100" cy="100" r="70" stroke="#0077b6" stroke-width="2" />
+                                
+                                <!-- Mechanical Block/Supercharger Top -->
+                                <rect x="70" y="25" width="60" height="20" rx="4" fill="#121824" stroke="#00b4d8" stroke-width="2"/>
+                                <circle cx="82" cy="35" r="4" fill="#00b4d8"/>
+                                <circle cx="100" cy="35" r="4" fill="#00b4d8"/>
+                                <circle cx="118" cy="35" r="4" fill="#00b4d8"/>
+
+                                <!-- V Engine Cylinders Left & Right -->
+                                <path d="M55 55 L85 95 L70 120 L40 80 Z" fill="#1e293b" stroke="#00b4d8" stroke-width="2"/>
+                                <path d="M145 55 L115 95 L130 120 L160 80 Z" fill="#1e293b" stroke="#00b4d8" stroke-width="2"/>
+
+                                <!-- Center Crankshaft Pulley -->
+                                <circle cx="100" cy="115" r="28" fill="#0a0d12" stroke="#00b4d8" stroke-width="4"/>
+                                <circle cx="100" cy="115" r="14" fill="#00b4d8"/>
+                                <circle cx="100" cy="115" r="6" fill="#0a0d12"/>
+
+                                <!-- Timing Belts / Pulleys -->
+                                <circle cx="75" cy="70" r="10" fill="#0a0d12" stroke="#90e0ef" stroke-width="2"/>
+                                <circle cx="125" cy="70" r="10" fill="#0a0d12" stroke="#90e0ef" stroke-width="2"/>
+                                
+                                <path d="M75 60 L125 60 M75 80 L100 115 L125 80" stroke="#90e0ef" stroke-width="2" stroke-dasharray="3 3"/>
+                            </svg>
+                        </div>
+
+                        <h3 class="text-xl font-bold font-tech text-white">GARAGE ACK</h3>
+                        <p class="text-xs text-brand-blue font-semibold tracking-widest uppercase mt-0.5">Automotive Repair Expert</p>
+
+                        <div class="mt-4 pt-4 border-t border-slate-800 text-xs text-slate-400 flex justify-between items-center">
+                            <span>VAT / BTW:</span>
+                            <span class="font-mono text-slate-200 font-semibold">BE 0742 492 438</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- BUSINESS CARD HIGHLIGHT BAR -->
+    <section id="info" class="relative z-20 -mt-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 sm:p-8 shadow-2xl grid grid-cols-1 md:grid-cols-3 gap-6 divide-y md:divide-y-0 md:divide-x divide-slate-800">
+                
+                <!-- Phone -->
+                <div class="flex items-center gap-4 pt-4 md:pt-0">
+                    <div class="w-12 h-12 rounded-xl bg-brand-blue/10 border border-brand-blue/30 flex items-center justify-center shrink-0">
+                        <i class="fa-solid fa-phone-volume text-brand-blue text-xl"></i>
+                    </div>
+                    <div>
+                        <div class="text-xs font-medium text-slate-400 uppercase tracking-wider" data-i18n="info_phone_label">Direct Phone / GSM</div>
+                        <a href="tel:0489116906" class="text-lg font-bold text-white hover:text-brand-blue transition-colors font-mono">
+                            0489 11 69 06
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Email -->
+                <div class="flex items-center gap-4 pt-4 md:pt-0 md:pl-6">
+                    <div class="w-12 h-12 rounded-xl bg-brand-blue/10 border border-brand-blue/30 flex items-center justify-center shrink-0">
+                        <i class="fa-solid fa-envelope text-brand-blue text-xl"></i>
+                    </div>
+                    <div class="overflow-hidden">
+                        <div class="text-xs font-medium text-slate-400 uppercase tracking-wider" data-i18n="info_email_label">Email Address</div>
+                        <a href="mailto:garage-ack@outlook.be" class="text-base font-bold text-white hover:text-brand-blue transition-colors truncate block">
+                            garage-ack@outlook.be
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Enterprise / BTW Number -->
+                <div class="flex items-center gap-4 pt-4 md:pt-0 md:pl-6">
+                    <div class="w-12 h-12 rounded-xl bg-brand-blue/10 border border-brand-blue/30 flex items-center justify-center shrink-0">
+                        <i class="fa-solid fa-file-invoice text-brand-blue text-xl"></i>
+                    </div>
+                    <div>
+                        <div class="text-xs font-medium text-slate-400 uppercase tracking-wider" data-i18n="info_vat_label">Enterprise / BTW No.</div>
+                        <div class="text-base font-bold text-white font-mono flex items-center gap-2">
+                            <span>BE 0742 492 438</span>
+                            <button onclick="copyVatNumber()" class="text-slate-400 hover:text-brand-blue transition-colors text-xs" title="Copy BTW">
+                                <i class="fa-regular fa-copy"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- SERVICES SECTION -->
+    <section id="services" class="py-24 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-xs font-bold text-brand-blue tracking-widest uppercase mb-2" data-i18n="services_subtitle">OUR EXPERTISE</h2>
+                <p class="text-3xl sm:text-4xl font-extrabold text-white font-tech" data-i18n="services_title">Comprehensive Auto Repairs</p>
+                <div class="w-16 h-1 bg-brand-blue mx-auto mt-4 rounded-full"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                
+                <!-- Service 1: Engine Diagnostics & Repair -->
+                <div class="bg-slate-900/80 border border-slate-800 rounded-2xl p-8 hover:border-brand-blue/50 transition-all duration-300 group hover:-translate-y-1">
+                    <div class="w-14 h-14 rounded-xl bg-brand-blue/10 border border-brand-blue/30 flex items-center justify-center mb-6 group-hover:bg-brand-blue group-hover:text-slate-950 transition-all text-brand-blue text-2xl">
+                        <i class="fa-solid fa-microchip"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3" data-i18n="srv_1_title">Engine Diagnostics & Repair</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed" data-i18n="srv_1_desc">
+                        Advanced computer diagnostics to read error codes, analyze engine faults, and perform accurate engine repairs.
+                    </p>
+                </div>
+
+                <!-- Service 2: Maintenance & Oil Service -->
+                <div class="bg-slate-900/80 border border-slate-800 rounded-2xl p-8 hover:border-brand-blue/50 transition-all duration-300 group hover:-translate-y-1">
+                    <div class="w-14 h-14 rounded-xl bg-brand-blue/10 border border-brand-blue/30 flex items-center justify-center mb-6 group-hover:bg-brand-blue group-hover:text-slate-950 transition-all text-brand-blue text-2xl">
+                        <i class="fa-solid fa-oil-can"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3" data-i18n="srv_2_title">Oil Change & Maintenance</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed" data-i18n="srv_2_desc">
+                        Full periodic maintenance, oil filter replacement, spark plug updates, fluid top-ups, and multi-point inspections.
+                    </p>
+                </div>
+
+                <!-- Service 3: Brakes & Suspension -->
+                <div class="bg-slate-900/80 border border-slate-800 rounded-2xl p-8 hover:border-brand-blue/50 transition-all duration-300 group hover:-translate-y-1">
+                    <div class="w-14 h-14 rounded-xl bg-brand-blue/10 border border-brand-blue/30 flex items-center justify-center mb-6 group-hover:bg-brand-blue group-hover:text-slate-950 transition-all text-brand-blue text-2xl">
+                        <i class="fa-solid fa-compact-disc"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3" data-i18n="srv_3_title">Brake System & Suspension</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed" data-i18n="srv_3_desc">
+                        Brake pad and disc replacement, ABS troubleshooting, shock absorbers, suspension arm, and steering linkage repair.
+                    </p>
+                </div>
+
+                <!-- Service 4: Electrical Electronics -->
+                <div class="bg-slate-900/80 border border-slate-800 rounded-2xl p-8 hover:border-brand-blue/50 transition-all duration-300 group hover:-translate-y-1">
+                    <div class="w-14 h-14 rounded-xl bg-brand-blue/10 border border-brand-blue/30 flex items-center justify-center mb-6 group-hover:bg-brand-blue group-hover:text-slate-950 transition-all text-brand-blue text-2xl">
+                        <i class="fa-solid fa-bolt"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3" data-i18n="srv_4_title">Auto Electrical Repairs</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed" data-i18n="srv_4_desc">
+                        Battery testing & replacement, starter motor, alternator checks, wiring inspection, and lighting fixes.
+                    </p>
+                </div>
+
+                <!-- Service 5: Technical Inspection Prep -->
+                <div class="bg-slate-900/80 border border-slate-800 rounded-2xl p-8 hover:border-brand-blue/50 transition-all duration-300 group hover:-translate-y-1">
+                    <div class="w-14 h-14 rounded-xl bg-brand-blue/10 border border-brand-blue/30 flex items-center justify-center mb-6 group-hover:bg-brand-blue group-hover:text-slate-950 transition-all text-brand-blue text-2xl">
+                        <i class="fa-solid fa-clipboard-check"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3" data-i18n="srv_5_title">Pre-Inspection (Keuring)</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed" data-i18n="srv_5_desc">
+                        Thorough pre-inspection checks for Belgium Contrôle Technique / AutoKeuring to pass vehicle inspection seamlessly.
+                    </p>
+                </div>
+
+                <!-- Service 6: General Mechanical Repairs -->
+                <div class="bg-slate-900/80 border border-slate-800 rounded-2xl p-8 hover:border-brand-blue/50 transition-all duration-300 group hover:-translate-y-1">
+                    <div class="w-14 h-14 rounded-xl bg-brand-blue/10 border border-brand-blue/30 flex items-center justify-center mb-6 group-hover:bg-brand-blue group-hover:text-slate-950 transition-all text-brand-blue text-2xl">
+                        <i class="fa-solid fa-gears"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3" data-i18n="srv_6_title">General Repairs & Parts</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed" data-i18n="srv_6_desc">
+                        Timing belt replacement, clutch kits, exhaust maintenance, cooling systems, and general mechanical servicing.
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT & APPOINTMENT SECTION -->
+    <section id="contact" class="py-20 bg-slate-950/60 border-t border-slate-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+                
+                <!-- Contact Info Left Column -->
+                <div class="lg:col-span-5 space-y-8">
+                    <div>
+                        <h2 class="text-xs font-bold text-brand-blue tracking-widest uppercase mb-2" data-i18n="contact_subtitle">GET IN TOUCH</h2>
+                        <h3 class="text-3xl font-extrabold text-white font-tech" data-i18n="contact_title">GARAGE ACK</h3>
+                        <p class="text-slate-400 mt-2 text-sm" data-i18n="contact_desc">
+                            Contact us directly or submit an appointment request. We will get back to you promptly!
+                        </p>
+                    </div>
+
+                    <!-- Direct Card Box -->
+                    <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 space-y-6">
+                        
+                        <!-- Phone Item -->
+                        <div class="flex items-start gap-4">
+                            <div class="w-10 h-10 rounded-lg bg-brand-blue/10 flex items-center justify-center text-brand-blue shrink-0 mt-1">
+                                <i class="fa-solid fa-phone"></i>
+                            </div>
+                            <div>
+                                <span class="text-xs text-slate-400 block font-medium" data-i18n="lbl_phone">Phone / GSM</span>
+                                <a href="tel:0489116906" class="text-lg font-bold text-white hover:text-brand-blue font-mono transition-colors">0489 11 69 06</a>
+                            </div>
+                        </div>
+
+                        <!-- Email Item -->
+                        <div class="flex items-start gap-4">
+                            <div class="w-10 h-10 rounded-lg bg-brand-blue/10 flex items-center justify-center text-brand-blue shrink-0 mt-1">
+                                <i class="fa-solid fa-envelope"></i>
+                            </div>
+                            <div>
+                                <span class="text-xs text-slate-400 block font-medium" data-i18n="lbl_email">Email</span>
+                                <a href="mailto:garage-ack@outlook.be" class="text-base font-bold text-white hover:text-brand-blue transition-colors">garage-ack@outlook.be</a>
+                            </div>
+                        </div>
+
+                        <!-- VAT Item -->
+                        <div class="flex items-start gap-4">
+                            <div class="w-10 h-10 rounded-lg bg-brand-blue/10 flex items-center justify-center text-brand-blue shrink-0 mt-1">
+                                <i class="fa-solid fa-id-card"></i>
+                            </div>
+                            <div>
+                                <span class="text-xs text-slate-400 block font-medium" data-i18n="lbl_vat">VAT Number (BTW)</span>
+                                <span class="text-base font-bold text-white font-mono">BE 0742 492 438</span>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- Appointment Form Right Column -->
+                <div class="lg:col-span-7">
+                    <div class="bg-slate-900 border border-slate-800 rounded-3xl p-6 sm:p-8">
+                        <h4 class="text-xl font-bold text-white mb-6 flex items-center gap-2">
+                            <i class="fa-solid fa-calendar-plus text-brand-blue"></i>
+                            <span data-i18n="form_heading">Book an Appointment / Inquiry</span>
+                        </h4>
+
+                        <form id="bookingForm" onsubmit="handleFormSubmit(event)" class="space-y-4">
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-xs font-semibold text-slate-400 mb-1" data-i18n="form_name">Your Name *</label>
+                                    <input type="text" required placeholder="John Doe" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-slate-200 focus:outline-none focus:border-brand-blue text-sm">
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-semibold text-slate-400 mb-1" data-i18n="form_phone">Phone Number *</label>
+                                    <input type="tel" required placeholder="0489 00 00 00" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-slate-200 focus:outline-none focus:border-brand-blue text-sm">
+                                </div>
+                            </div>
+
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-xs font-semibold text-slate-400 mb-1" data-i18n="form_email">Email Address</label>
+                                    <input type="email" placeholder="example@domain.com" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-slate-200 focus:outline-none focus:border-brand-blue text-sm">
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-semibold text-slate-400 mb-1" data-i18n="form_service">Required Service</label>
+                                    <select class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-slate-200 focus:outline-none focus:border-brand-blue text-sm">
+                                        <option value="Diagnostics" data-i18n="opt_diag">Engine Diagnostics</option>
+                                        <option value="Maintenance" data-i18n="opt_maint">Oil Change & Maintenance</option>
+                                        <option value="Brakes" data-i18n="opt_brakes">Brakes & Suspension</option>
+                                        <option value="Electrical" data-i18n="opt_elec">Electrical Repairs</option>
+                                        <option value="Keuring" data-i18n="opt_insp">Pre-Inspection Check</option>
+                                        <option value="General" data-i18n="opt_other">Other Repair</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-400 mb-1" data-i18n="form_msg">Message / Car Model & Issue</label>
+                                <textarea rows="4" placeholder="e.g. BMW 3 Series - Check Engine Light is on..." class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-slate-200 focus:outline-none focus:border-brand-blue text-sm"></textarea>
+                            </div>
+
+                            <button type="submit" class="w-full py-4 bg-gradient-to-r from-brand-blue to-brand-darkBlue hover:from-cyan-400 hover:to-blue-600 text-slate-950 font-bold rounded-xl transition-all shadow-lg text-base">
+                                <span data-i18n="form_submit">Submit Booking Request</span>
+                            </button>
+                        </form>
+
+                        <!-- Notification Alert Container -->
+                        <div id="formSuccessAlert" class="hidden mt-4 p-4 rounded-xl bg-emerald-900/40 border border-emerald-600/50 text-emerald-300 text-sm text-center">
+                            <i class="fa-solid fa-circle-check mr-2"></i>
+                            <span data-i18n="alert_success">Thank you! Your request has been sent. Garage ACK will contact you shortly.</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-slate-950 border-t border-slate-900 py-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center sm:text-left flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div>
+                <span class="font-tech text-lg font-bold text-white">GARAGE <span class="text-brand-blue">ACK</span></span>
+                <p class="text-xs text-slate-500 mt-1">BTW / enterprise number: BE 0742 492 438</p>
+            </div>
+
+            <p class="text-xs text-slate-500">
+                &copy; <span id="year"></span> GARAGE ACK AUTO SERVICE. All rights reserved.
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // Set dynamic copyright year
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Mobile menu toggle
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('hidden');
+        }
+
+        // Form submission handler
+        function handleFormSubmit(e) {
+            e.preventDefault();
+            const alertBox = document.getElementById('formSuccessAlert');
+            alertBox.classList.remove('hidden');
+            document.getElementById('bookingForm').reset();
+            setTimeout(() => {
+                alertBox.classList.add('hidden');
+            }, 6000);
+        }
+
+        // One-click VAT copy feature
+        function copyVatNumber() {
+            const vatText = "BE0742492438";
+            const tempInput = document.createElement("input");
+            tempInput.value = vatText;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand("copy");
+            document.body.removeChild(tempInput);
+            
+            // Temporary feedback message
+            const msg = currentLang === 'ru' ? 'НДС скопирован!' : 
+                        currentLang === 'fr' ? 'N° TVA copié !' : 
+                        currentLang === 'nl' ? 'BTW gecopieerd!' : 'VAT Copied!';
+            alert(msg); // Styled notification or standard system message
+        }
+
+        /* Multilingual Translation Object (EN, FR, NL, RU) */
+        const translations = {
+            en: {
+                nav_home: "Home",
+                nav_details: "Card Details",
+                nav_services: "Services",
+                nav_contact: "Contact",
+                hero_badge: "PROFESSIONAL AUTOMOTIVE REPAIR",
+                hero_subtitle: "AUTO SERVICE & DIAGNOSTICS",
+                hero_desc: "Your trusted auto service center. From advanced diagnostic procedures to complete mechanical repairs and regular maintenance. We keep your vehicle performing at its best.",
+                btn_book: "Book Appointment",
+                info_phone_label: "Direct Phone / GSM",
+                info_email_label: "Email Address",
+                info_vat_label: "Enterprise / BTW No.",
+                services_subtitle: "OUR EXPERTISE",
+                services_title: "Comprehensive Auto Repairs",
+                srv_1_title: "Engine Diagnostics & Repair",
+                srv_1_desc: "Advanced computer diagnostics to read error codes, analyze engine faults, and perform accurate repairs.",
+                srv_2_title: "Oil Change & Maintenance",
+                srv_2_desc: "Full periodic maintenance, oil filter replacement, spark plug updates, and multi-point inspections.",
+                srv_3_title: "Brake System & Suspension",
+                srv_3_desc: "Brake pad and disc replacement, ABS troubleshooting, shock absorbers, and suspension repairs.",
+                srv_4_title: "Auto Electrical Repairs",
+                srv_4_desc: "Battery testing & replacement, starter motor, alternator checks, wiring inspection, and lighting fixes.",
+                srv_5_title: "Pre-Inspection Check",
+                srv_5_desc: "Thorough pre-inspection checks for Belgium Contrôle Technique / AutoKeuring to pass vehicle inspection.",
+                srv_6_title: "General Repairs & Parts",
+                srv_6_desc: "Timing belt replacement, clutch kits, exhaust maintenance, cooling systems, and general mechanical servicing.",
+                contact_subtitle: "GET IN TOUCH",
+                contact_title: "GARAGE ACK AUTO SERVICE",
+                contact_desc: "Contact us directly via phone, email or submit an appointment request below.",
+                lbl_phone: "Phone / GSM",
+                lbl_email: "Email Address",
+                lbl_vat: "Enterprise / BTW No.",
+                form_heading: "Book an Appointment / Inquiry",
+                form_name: "Your Name *",
+                form_phone: "Phone Number *",
+                form_email: "Email Address",
+                form_service: "Required Service",
+                opt_diag: "Engine Diagnostics",
+                opt_maint: "Oil Change & Maintenance",
+                opt_brakes: "Brakes & Suspension",
+                opt_elec: "Electrical Repairs",
+                opt_insp: "Pre-Inspection Check",
+                opt_other: "Other Repair",
+                form_msg: "Message / Car Model & Issue",
+                form_submit: "Submit Booking Request",
+                alert_success: "Thank you! Your request has been sent. Garage ACK will contact you shortly."
+            },
+            fr: {
+                nav_home: "Accueil",
+                nav_details: "Carte",
+                nav_services: "Services",
+                nav_contact: "Contact",
+                hero_badge: "RÉPARATION AUTOMOBILE PROFESSIONNELLE",
+                hero_subtitle: "SERVICE AUTO & DIAGNOSTIC",
+                hero_desc: "Votre centre de service automobile de confiance. Du diagnostic électronique aux réparations mécaniques et à l'entretien périodique.",
+                btn_book: "Prendre Rendez-vous",
+                info_phone_label: "Téléphone / GSM",
+                info_email_label: "Adresse E-mail",
+                info_vat_label: "N° d'Entreprise / TVA",
+                services_subtitle: "NOTRE EXPERTISE",
+                services_title: "Services Automobiles Complets",
+                srv_1_title: "Diagnostic & Réparation Moteur",
+                srv_1_desc: "Diagnostic informatique avancé pour analyser les codes d'erreur et effectuer les réparations moteur.",
+                srv_2_title: "Vidange & Entretien",
+                srv_2_desc: "Entretien périodique complet, remplacement de filtre à huile, bougies et révision générale.",
+                srv_3_title: "Freinage & Suspension",
+                srv_3_desc: "Remplacement plaquettes et disques de frein, amortisseurs, cardans et système ABS.",
+                srv_4_title: "Électricité Automobile",
+                srv_4_desc: "Test et remplacement de batterie, alternateur, démarreur, circuits électriques et éclairage.",
+                srv_5_title: "Préparation Contrôle Technique",
+                srv_5_desc: "Vérification complète avant le contrôle technique belge pour passer l'inspection sans tracas.",
+                srv_6_title: "Mécanique Générale",
+                srv_6_desc: "Courroie de distribution, embrayage, système d'échappement, refroidissement et mécanique générale.",
+                contact_subtitle: "CONTACTEZ-NOUS",
+                contact_title: "GARAGE ACK AUTO SERVICE",
+                contact_desc: "Contactez-nous directement par téléphone, e-mail ou via le formulaire ci-dessous.",
+                lbl_phone: "Téléphone / GSM",
+                lbl_email: "Adresse E-mail",
+                lbl_vat: "N° de TVA / BTW",
+                form_heading: "Prendre Rendez-vous / Demande",
+                form_name: "Votre Nom *",
+                form_phone: "Numéro de Téléphone *",
+                form_email: "Adresse E-mail",
+                form_service: "Service Requis",
+                opt_diag: "Diagnostic Moteur",
+                opt_maint: "Vidange & Entretien",
+                opt_brakes: "Freins & Suspension",
+                opt_elec: "Électricité Automobile",
+                opt_insp: "Préparation Contrôle Technique",
+                opt_other: "Autre Réparation",
+                form_msg: "Message / Modèle & Problème",
+                form_submit: "Envoyer la Demande",
+                alert_success: "Merci ! Votre demande a été envoyée. Le Garage ACK vous contactera rapidement."
+            },
+            nl: {
+                nav_home: "Home",
+                nav_details: "Gegevens",
+                nav_services: "Diensten",
+                nav_contact: "Contact",
+                hero_badge: "PROFESSIONELE HERSTELLINGEN",
+                hero_subtitle: "AUTOSERVICE & DIAGNOSE",
+                hero_desc: "Uw betrouwbare garage. Van geavanceerde computerdiagnose tot volledige mechanische herstellingen en periodiek onderhoud.",
+                btn_book: "Afspraak Maken",
+                info_phone_label: "Directe Telefoon / GSM",
+                info_email_label: "E-mailadres",
+                info_vat_label: "Ondernemingsnr. / BTW",
+                services_subtitle: "ONZE EXPERTISE",
+                services_title: "Compleet Auto-Onderhoud",
+                srv_1_title: "Motor Diagnose & Herstelling",
+                srv_1_desc: "Geavanceerde diagnose om foutcodes te lezen, storingen te analyseren en de motor te herstellen.",
+                srv_2_title: "Olieverversing & Onderhoud",
+                srv_2_desc: "Periodiek onderhoud, oliefilter vervangen, bougies vernieuwen en volledige controle van uw wagen.",
+                srv_3_title: "Remsysteem & Ophanging",
+                srv_3_desc: "Vervangen van remblokken, remschijven, schokdempers, ophangingsarmen en ABS controle.",
+                srv_4_title: "Auto-Elektriciteit",
+                srv_4_desc: "Accu testen & vervangen, starter, alternator, bedrading en verlichting herstellen.",
+                srv_5_title: "Voorbereiding Autokeuring",
+                srv_5_desc: "Grondige controle vóór de Belgische autokeuring voor een zorgeloze inspectie.",
+                srv_6_title: "Algemene Mechaniek",
+                srv_6_desc: "Distributieriem, koppeling, uitlaat, koelsysteem en alle algemene mechanische werkzaamheden.",
+                contact_subtitle: "CONTACTEER ONS",
+                contact_title: "GARAGE ACK AUTO SERVICE",
+                contact_desc: "Neem rechtstreeks contact op via telefoon, e-mail of vul het afspraakformulier in.",
+                lbl_phone: "Telefoon / GSM",
+                lbl_email: "E-mailadres",
+                lbl_vat: "BTW / Ondernemingsnr.",
+                form_heading: "Afspraak Maken / Aanvraag",
+                form_name: "Uw Naam *",
+                form_phone: "Telefoonnummer *",
+                form_email: "E-mailadres",
+                form_service: "Gewenste Dienst",
+                opt_diag: "Motor Diagnose",
+                opt_maint: "Olieverversing & Onderhoud",
+                opt_brakes: "Remmen & Ophanging",
+                opt_elec: "Elektrische Herstelling",
+                opt_insp: "Voorbereiding Autokeuring",
+                opt_other: "Andere Herstelling",
+                form_msg: "Bericht / Automodel & Probleem",
+                form_submit: "Aanvraag Verzenden",
+                alert_success: "Bedankt! Uw aanvraag is verzonden. Garage ACK neemt zo snel mogelijk contact met u op."
+            },
+            ru: {
+                nav_home: "Главная",
+                nav_details: "Визитка",
+                nav_services: "Услуги",
+                nav_contact: "Контакты",
+                hero_badge: "ПРОФЕССИОНАЛЬНЫЙ АВТОСЕРВИС",
+                hero_subtitle: "ТЕХОБСЛУЖИВАНИЕ И ДИАГНОСТИКА",
+                hero_desc: "Ваш надежный автосервис. От компьютерной диагностики двигателя до полного механического ремонта и регулярного ТО.",
+                btn_book: "Записаться на ремонт",
+                info_phone_label: "Телефон / GSM",
+                info_email_label: "Электронная почта",
+                info_vat_label: "Номер N° TVA / BTW",
+                services_subtitle: "НАША СПЕЦИАЛИЗАЦИЯ",
+                services_title: "Полный спектр услуг СТО",
+                srv_1_title: "Диагностика и ремонт ДВС",
+                srv_1_desc: "Компьютерная диагностика, считывание ошибок, поиск неисправностей и точный ремонт двигателя.",
+                srv_2_title: "Замена масла и ТО",
+                srv_2_desc: "Регулярное техническое обслуживание, замена фильтров, свечей зажигания и всех технических жидкостей.",
+                srv_3_title: "Тормозная система и ходовая",
+                srv_3_desc: "Замена тормозных колодок и дисков, ремонт подвески, амортизаторов и диагностика ABS.",
+                srv_4_title: "Автоэлектрика",
+                srv_4_desc: "Проверка и замена аккумуляторов, генераторов, стартеров, проводки и элементов освещения.",
+                srv_5_title: "Подготовка к техосмотру (Keuring)",
+                srv_5_desc: "Комплексная проверка авто перед бельгийским техосмотром (Contrôle Technique / Keuring).",
+                srv_6_title: "Общий механический ремонт",
+                srv_6_desc: "Замена ремня ГРМ, сцепления, ремонт выхлопной и охладительной систем, слесарные работы.",
+                contact_subtitle: "СВЯЗАТЬСЯ С НАМИ",
+                contact_title: "GARAGE ACK AUTO SERVICE",
+                contact_desc: "Звоните нам напрямую или отправьте заявку через форму запись ниже.",
+                lbl_phone: "Телефон / GSM",
+                lbl_email: "Электронная почта",
+                lbl_vat: "Номер предприятия / BTW",
+                form_heading: "Запись на сервис / Вопрос",
+                form_name: "Ваше имя *",
+                form_phone: "Номер телефона *",
+                form_email: "Электронная почта",
+                form_service: "Необходимая услуга",
+                opt_diag: "Диагностика двигателя",
+                opt_maint: "Замена масла / Замена ТО",
+                opt_brakes: "Тормоза и подвеска",
+                opt_elec: "Автоэлектрика",
+                opt_insp: "Подготовка к техосмотру",
+                opt_other: "Другой ремонт",
+                form_msg: "Марка авто и описание проблемы",
+                form_submit: "Отправить заявку",
+                alert_success: "Спасибо! Ваша заявка отправлена. Garage ACK свяжется с вами в ближайшее время."
+            }
+        };
+
+        let currentLang = 'en';
+
+        function setLanguage(lang) {
+            if (!translations[lang]) return;
+            currentLang = lang;
+
+            // Highlight active language button
+            ['en', 'fr', 'nl', 'ru'].forEach(l => {
+                const btn = document.getElementById(`lang-${l}`);
+                if (btn) {
+                    if (l === lang) {
+                        btn.className = "px-2.5 py-1 rounded-md transition-all bg-brand-blue text-slate-950 font-bold shadow-sm";
+                    } else {
+                        btn.className = "px-2.5 py-1 rounded-md transition-all text-slate-400 hover:text-white";
+                    }
+                }
+            });
+
+            // Update text for all elements with data-i18n attribute
+            document.querySelectorAll('[data-i18n]').forEach(elem => {
+                const key = elem.getAttribute('data-i18n');
+                if (translations[lang][key]) {
+                    elem.textContent = translations[lang][key];
+                }
+            });
+        }
+
+        // Initialize default language
+        window.onload = function() {
+            setLanguage('en');
+        };
+    </script>
+</body>
+</html>
